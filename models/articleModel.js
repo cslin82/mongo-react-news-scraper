@@ -10,6 +10,7 @@ var ArticleSchema = new Schema({
         unique: true
     },
     summary: String,
+    saved: Boolean,
 
     notes: {
         type: Schema.Types.ObjectId,

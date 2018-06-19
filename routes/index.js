@@ -6,7 +6,7 @@ var request = require("request");
 
 var mongoose = require("mongoose");
 
-const scrapeURL = ""
+const scrapeURL = "https://www.npr.org/sections/news/";
 
 
 /* GET home page. */
