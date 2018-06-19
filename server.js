@@ -1,7 +1,13 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var logger = require("morgan");
-var mongoose = require("mongoose");
+const express = require("express");
+const bodyParser = require("body-parser");
+const logger = require("morgan");
+const mongoose = require("mongoose");
+
+const express = require('express');
+const exphbs  = require('express-handlebars');
+
+// var cheerio = require("cheerio");
+// var request = require("request");
 
 var PORT = 8080;
 
@@ -9,6 +15,8 @@ var PORT = 8080;
 var app = express();
 
 // Configure middleware
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 
 var indexRouter = require('./routes/index');
@@ -28,5 +36,5 @@ mongoose.connect("mongodb://localhost/newsdb");
 
 // Start the server
 app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "!");
+  console.log("App running on port " + PORT + "; go to http://localhost:" + PORT + "/");
 });
