@@ -5,7 +5,16 @@ var Schema = mongoose.Schema;
 var ArticleSchema = new Schema({
     title: String,
     author: String,
-    summary: String
+    url: {
+        type: String,
+        unique: true
+    },
+    summary: String,
+
+    notes: {
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
+    }
 
 
 });
