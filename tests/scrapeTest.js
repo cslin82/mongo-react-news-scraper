@@ -27,8 +27,8 @@ request(scrapeURL, function(error, response, html) {
     let title = $('h2.entry-title', element).text().trim();
     // console.log('title:', title)
 
-    let link = $('a.go', element).attr("href").trim();
-    // console.log('link:', link);
+    let url = $('a.go', element).attr("href").trim();
+    // console.log('url:', url);
     
     let author = $('address.vcard', element).text().trim();
     // console.log('author:', author);
@@ -38,12 +38,12 @@ request(scrapeURL, function(error, response, html) {
     let summary = $('div.entry-summary', element).text().trim();
     
     summary = summary.slice(0, summary.indexOf('Read more') - 2).trim();
-    console.log('summary:', summary);
+    // console.log('summary:', summary);
     
     // Save these results in an object that we'll push into the results array we defined earlier
     results.push({
       title,
-      link,
+      url,
       author,
       summary
     });
