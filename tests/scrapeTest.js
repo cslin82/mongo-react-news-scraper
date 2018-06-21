@@ -33,8 +33,12 @@ request(scrapeURL, function(error, response, html) {
     let author = $('address.vcard', element).text().trim();
     // console.log('author:', author);
     
+    // console.log('summary block:', $('div.entry-summary', element).remove('a').text())
+    // console.log('summary block:', $('div.entry-summary', element).remove('a').html())
     let summary = $('div.entry-summary', element).text().trim();
-    // console.log('summary:', summary);
+    
+    summary = summary.slice(0, summary.indexOf('Read more') - 2).trim();
+    console.log('summary:', summary);
     
     // Save these results in an object that we'll push into the results array we defined earlier
     results.push({
