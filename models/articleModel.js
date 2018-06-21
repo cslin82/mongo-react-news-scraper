@@ -11,6 +11,7 @@ var ArticleSchema = new Schema({
     },
     summary: String,
     saved: Boolean,
+    publishDate: Date,
 
     notes: {
         type: Schema.Types.ObjectId,

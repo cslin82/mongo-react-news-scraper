@@ -31,9 +31,9 @@ mongoose.connect(MONGODB_URI)
 
 )
 
-// .finally(
-//     () => mongoose.connection.close()
-// )
+.finally(
+    () => mongoose.connection.close()
+)
 
 
 

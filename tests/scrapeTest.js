@@ -36,7 +36,10 @@ request(scrapeURL, function(error, response, html) {
     // console.log('summary block:', $('div.entry-summary', element).remove('a').text())
     // console.log('summary block:', $('div.entry-summary', element).remove('a').html())
     let summary = $('div.entry-summary', element).text().trim();
-    
+
+    let publishDate = new Date($('time.published', element).attr('datetime'));
+        
+    // <time class="date published" datetime="2018-04-02T06:03:34-07:00">April 2, 2018</time>
     summary = summary.slice(0, summary.indexOf('Read more') - 2).trim();
     // console.log('summary:', summary);
     
@@ -45,6 +48,7 @@ request(scrapeURL, function(error, response, html) {
       title,
       url,
       author,
+      publishDate,
       summary
     });
   });
