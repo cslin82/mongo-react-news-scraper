@@ -3,7 +3,6 @@ const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
 
-const express = require('express');
 const exphbs  = require('express-handlebars');
 
 // var cheerio = require("cheerio");
