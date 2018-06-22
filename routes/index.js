@@ -8,10 +8,28 @@ var mongoose = require("mongoose");
 
 const scrapeURL = "https://www.npr.org/sections/news/";
 
+const moment = require('moment');
+
+
+
+const tempObj = require('../tests/docs.json')
+
+// replace this with handlebars helpers
+tempObj.forEach(element => {
+  element.publishDateDate = moment(element.publishDate).format('LL');
+  element.publishDateFull = moment(element.publishDate).format('LLL');
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
+
+
+  var hbsObject = {
+    articles: tempObj,
+    title: 'Mozilla Blog scraper'
+  };
+  res.render('index', hbsObject);
 });
 
 router.get('/scrape', function (req, res) {

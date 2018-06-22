@@ -1,0 +1,122 @@
+[
+    {
+        "_id": "5b2b581b3b2697107b87ec54",
+        "title": "WITHIN creates distribution platform using WebVR",
+        "url": "https://blog.mozilla.org/blog/2018/06/13/within-webvr/",
+        "author": "Judy DeMocker",
+        "publishDate": "2018-06-13T15:45:36.000Z",
+        "summary": "Virtual Reality (VR) pioneers at WITHIN have launched one of the first VR distribution platforms. Now anyone can enjoy gorgeous VR on their PC, headset, or mobile device, thanks to the WebVR API, created by Mozilla engineers.",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec55",
+        "title": "Level Up with New Productivity Features in Firefox for iOS",
+        "url": "https://blog.mozilla.org/blog/2018/06/12/level-up-with-new-productivity-features-in-firefox-for-ios/",
+        "author": "Maria Popova",
+        "publishDate": "2018-06-12T13:01:29.000Z",
+        "summary": "Today, we’re announcing new features in Firefox for iOS to make your life easier. Whether you’re a multi-tasker or someone who doesn’t want to waste time, we’re rolling out new …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec56",
+        "title": "Our past work with Facebook",
+        "url": "https://blog.mozilla.org/blog/2018/06/11/our-past-work-with-facebook/",
+        "author": "Denelle Dixon",
+        "publishDate": "2018-06-11T15:49:08.000Z",
+        "summary": "Over the last three months, Mozilla has been a vocal critic of Facebook’s practices with respect to its lack of user transparency. Throughout this time we’ve engaged with Facebook directly …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec57",
+        "title": "Parlez-vous Deutsch? Rhagor o Leisiau i Common Voice",
+        "url": "https://blog.mozilla.org/blog/2018/06/07/parlez-vous-deutsch-rhagor-o-leisiau-i-common-voice/",
+        "author": "Katharina Borchert",
+        "publishDate": "2018-06-07T08:00:26.000Z",
+        "summary": "We’re very proud to be announcing the next phase of the Common Voice project. It’s now available for contributors in three new languages, German, French and Welsh, with 40+ other …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec58",
+        "title": "Facebook Must Do Better",
+        "url": "https://blog.mozilla.org/blog/2018/06/05/facebook-must-do-better/",
+        "author": "Denelle Dixon",
+        "publishDate": "2018-06-05T16:53:57.000Z",
+        "summary": "The recent New York Times report alleging expansive data sharing between Facebook and device makers shows that Facebook has a lot of work to do to come clean with its …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec59",
+        "title": "Latest Firefox Test Pilot Experiments: Custom Color and Side View",
+        "url": "https://blog.mozilla.org/blog/2018/06/05/latest-firefox-test-pilot-experiments-custom-color-and-side-view/",
+        "author": "Nick Nguyen",
+        "publishDate": "2018-06-05T14:01:00.000Z",
+        "summary": "Before we bring new features to Firefox, we give them a test run to make sure they’re right for our users. To help determine which features we add and how …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec5a",
+        "title": "Mozilla Announces $225,000 for Art and Advocacy Exploring Artificial Intelligence",
+        "url": "https://blog.mozilla.org/blog/2018/06/04/mozilla-announces-225000-for-art-and-advocacy-exploring-artificial-intelligence/",
+        "author": "Brett Gaylor",
+        "publishDate": "2018-06-04T14:00:53.000Z",
+        "summary": "Mozilla’s latest awards will support people and projects that examine the effects of AI on society   At Mozilla, one way we support a healthy internet is by fueling the …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec5b",
+        "title": "Ready for GDPR: Firefox Focus Offers Additional Tracking Protection Against Advertisers",
+        "url": "https://blog.mozilla.org/blog/2018/05/23/ready-for-gdpr-firefox-focus-offers-additional-tracking-protection-against-advertisers/",
+        "author": "Barbara Bermes",
+        "publishDate": "2018-05-23T18:00:11.000Z",
+        "summary": "It’s been nearly a year since we launched Firefox Focus for Android, and it has become one of the most popular privacy browsers for mobile around the world. In light …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec5c",
+        "title": "The General Data Protection Regulation and Firefox",
+        "url": "https://blog.mozilla.org/blog/2018/05/23/the-general-data-protection-regulation-and-firefox/",
+        "author": "Marshall Erwin",
+        "publishDate": "2018-05-23T17:36:16.000Z",
+        "summary": "We are only a few days away from May 25th, when the European General Data Protection Regulation (GDPR) will go into full effect. Since we were founded, Mozilla has always …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec5d",
+        "title": "Reality Redrawn Opens At The Tech",
+        "url": "https://blog.mozilla.org/blog/2018/05/19/reality-redrawn-opens-at-the-tech/",
+        "author": "Katharina Borchert",
+        "publishDate": "2018-05-19T16:02:17.000Z",
+        "summary": "The Tech Museum of Innovation in San Jose was filled on Thursday with visitors experiencing new takes on the issue of fake news by artists using mixed reality, card games …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec5f",
+        "title": "What’s Your Open Source Strategy? Here Are 10 Answers…",
+        "url": "https://blog.mozilla.org/blog/2018/05/15/whats-your-open-source-strategy-here-are-10-answers/",
+        "author": "Patrick Finch",
+        "publishDate": "2018-05-15T20:35:25.000Z",
+        "summary": "A research report from Mozilla and Open Tech Strategies provides new perspectives on framing open source strategy. The report builds on Mozilla’s “Open by Design” strategy, which aims to increase …",
+        "saved": false,
+        "__v": 0
+    },
+    {
+        "_id": "5b2b581b3b2697107b87ec5e",
+        "title": "Update on Fight for Net Neutrality in U.S. – Senate votes to save net neutrality, now it’s up to the House",
+        "url": "https://blog.mozilla.org/blog/2018/05/16/update-on-fight-for-net-neutrality-in-u-s-senate-votes-to-save-net-neutrality-now-its-up-to-the-house/",
+        "author": "Denelle Dixon",
+        "publishDate": "2018-05-16T20:16:47.000Z",
+        "summary": "Today, the U.S. Senate passed a Congressional Review Act (CRA) resolution to save net neutrality and overturn the FCC’s disastrous order to end net neutrality protections. We’re pleased this resolution …",
+        "saved": false,
+        "__v": 0
+    }
+]

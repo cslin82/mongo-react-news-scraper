@@ -13,27 +13,33 @@ mongoose.connect(MONGODB_URI)
 )
 .then(
     () => {
-        var newArticle = new Article({
-            title: "title2",
-            author: "author2",
-            url: "http://www.google.com/2",
-            summary: "summary 2 lorem ipsum yadda yadda",
-            saved: false
+        Article.find({}, function (err, docs) {
+            if (err) throw err;
 
-
-
+            console.log(JSON.stringify(docs));
         })
-        .save(function (err) {
-            if (err) return handleError(err);
-            // saved!
-          })
+
+        // var newArticle = new Article({
+        //     title: "title2",
+        //     author: "author2",
+        //     url: "http://www.google.com/2",
+        //     summary: "summary 2 lorem ipsum yadda yadda",
+        //     saved: false
+
+
+
+        // })
+        // .save(function (err) {
+        //     if (err) return handleError(err);
+        //     // saved!
+        //   })
     }
 
 )
 
-.finally(
-    () => mongoose.connection.close()
-)
+// .finally(
+//     () => mongoose.connection.close()
+// )
 
 
 
