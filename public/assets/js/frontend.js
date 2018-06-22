@@ -10,6 +10,7 @@ $(document).ready(function() {
     });
   })
 
+  // DRY this up later
   $(document).on('click', '.action-unsave', function (event) {
     event.preventDefault();
     console.log('clicked unsave ' + $(this).data('articleId'));
