@@ -1,4 +1,4 @@
- <!-- begin repeat -->
+ 
         <div class="card my-3">
           <div class="card-body">
             <h5 class="card-title">
@@ -16,9 +16,10 @@
           </div>
           <div class="card-footer">
              Posted on
-            <time datetime="{{publishDateISO}}">
+             {{!-- replace this with handlebars helpers --}}
+            <time datetime="{{publishDate}}" title="{{publishDateFull}}">
               <span class="date">{{publishDateDate}}</span>
             </time>
           </div>
         </div>
-  <!-- end repeat -->
+ 

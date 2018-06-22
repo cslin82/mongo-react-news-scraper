@@ -26,13 +26,13 @@
             <div class="container">
 
                 
-                <h1 class="display-4"><i class="fas fa-broadcast-tower"></i> NPR News article scraper</h1>
-                <p class="lead">This Node.js-Express-MongoDB-Mongoose app scrapes articles from NPR into a Mongo database. It lets you save and make notes on them.</p>
+                <h1 class="display-4">Mozilla Blog article scraper</h1>
+                <p class="lead">This Node.js-Express-MongoDB-Mongoose app scrapes blog posts from Mozilla into a Mongo database. It lets you save and make notes on them.</p>
                 <a class="btn btn-primary btn-block" href="#" role="button">Scrape new stories</a>
                 
             </div>
         </div>
-     {{#each article}} {{> articlePart}} {{/each}}
+     {{#each articles}} {{> articlePart}} {{/each}}
     </div>
     <!-- close container -->
 
@@ -40,7 +40,9 @@
         <div class="row">
           <div class="col-md">
             <hr>
-            <p class="d-block bg-secondary mb-3 p-1 text-light text-center rounded">All caught up!</small>
+            <p class="d-block bg-secondary mb-3 p-1 text-light text-center rounded">All caught up!</p>
+            <p class="d-block mb-3 text-center"><i class="fab fa-github"></i><a href="https://github.com/cslin82/Mongo-News-Scraper"> @cslin82/Mongo-News-Scraper</a> on GitHub</p>
+
           </div>
           
         </div>
