@@ -13,10 +13,10 @@ var ArticleSchema = new Schema({
     saved: Boolean,
     publishDate: Date,
 
-    notes: {
-        type: Schema.Types.ObjectId,
-        ref: 'Note'
-    }
+    // notes: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'Note'
+    // }
 
 
 });
