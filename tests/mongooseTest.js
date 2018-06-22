@@ -13,26 +13,28 @@ mongoose.connect(MONGODB_URI)
 )
 .then(
     () => {
-        Article.find({}, function (err, docs) {
+        /* Article.find({}, function (err, docs) {
             if (err) throw err;
 
             console.log(JSON.stringify(docs));
+        }) */
+
+        let selArticle = Article.find({}, function (err, docs) {
+            if (err) throw err;
+
+            // console.log(JSON.stringify(docs));
         })
+        .then( (blahblah) => {
+            console.log(typeof blahblah);
+            blahblah.update({saved: true})
+            console.log(JSON.stringify(blahblah));
+            console.log(blahblah);
+            
 
-        // var newArticle = new Article({
-        //     title: "title2",
-        //     author: "author2",
-        //     url: "http://www.google.com/2",
-        //     summary: "summary 2 lorem ipsum yadda yadda",
-        //     saved: false
+        });
 
 
 
-        // })
-        // .save(function (err) {
-        //     if (err) return handleError(err);
-        //     // saved!
-        //   })
     }
 
 )

@@ -36,6 +36,10 @@ app.use(express.static("public"));
 var indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
+// Routes
+var apiRouter = require('./routes/api-routes');
+app.use('/', apiRouter);
+
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "; go to http://localhost:" + PORT + "/");

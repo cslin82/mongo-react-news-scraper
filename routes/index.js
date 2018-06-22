@@ -23,7 +23,7 @@ const Article = require('../models/articleModel')
 
 
 /* GET home page. */
-router.get('/', function(req, res) {
+router.get('/', function (req, res) {
   Article.find({}, function (err, docs) {
     if (err) throw err;
 
@@ -33,13 +33,31 @@ router.get('/', function(req, res) {
     });
     console.log(JSON.stringify(docs, '', 2));
 
-  var hbsObject = {
-    articles: docs,
-    title: 'Mozilla Blog scraper'
-  };
-  res.render('index', hbsObject);
-})
+    var hbsObject = {
+      articles: docs,
+      title: 'Mozilla Blog scraper'
+    };
+    res.render('index', hbsObject);
+  })
+});
 
+/* GET saved page. */
+router.get('/saved', function (req, res) {
+  Article.find({ saved: true }, function (err, docs) {
+    if (err) throw err;
+
+    docs.forEach(element => {
+      element.publishDateDate = moment(element.publishDate).format('LL');
+      element.publishDateFull = moment(element.publishDate).format('LLL');
+    });
+    console.log(JSON.stringify(docs, '', 2));
+
+    var hbsObject = {
+      articles: docs,
+      title: 'Mozilla Blog scraper'
+    };
+    res.render('index', hbsObject);
+  })
 
 });
 
