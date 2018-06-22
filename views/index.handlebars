@@ -1,5 +1,50 @@
-<h1>Body goes here</h1>
 
-{{#each article}}
-    {{> articlePart}}
-{{/each}}
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+          
+                <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Saved</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Help</a>
+                    </li>
+                  </ul>
+     
+                </div>
+              </nav>
+
+    <div class="container">
+        <div class="jumbotron">
+            <div class="container">
+
+                
+                <h1 class="display-4"><i class="fas fa-broadcast-tower"></i> NPR News article scraper</h1>
+                <p class="lead">This Node.js-Express-MongoDB-Mongoose app scrapes articles from NPR into a Mongo database. It lets you save and make notes on them.</p>
+                <a class="btn btn-primary btn-block" href="#" role="button">Scrape new stories</a>
+                
+            </div>
+        </div>
+     {{#each article}} {{> articlePart}} {{/each}}
+    </div>
+    <!-- close container -->
+
+    <footer class="container py-5">
+        <div class="row">
+          <div class="col-md">
+            <hr>
+            <p class="d-block bg-secondary mb-3 p-1 text-light text-center rounded">All caught up!</small>
+          </div>
+          
+        </div>
+      </footer>
+
+
+

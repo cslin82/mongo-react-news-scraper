@@ -1,3 +1,24 @@
-<li>
-    <a href="{{url}}">{{title}}</a> by {{author}}: {{summary}} {{#if saved}}saved{{/if}}
-</li>
+ <!-- begin repeat -->
+        <div class="card my-3">
+          <div class="card-body">
+            <h5 class="card-title">
+              <span class="badge badge-success">New</span>
+              <a href="{{url}}">{{title}}</a>
+              <small class="card-text text-muted">by {{author}}</small>
+              <span class="float-right">
+                {{#unless saved}}<a href="#" class="badge badge-primary">Save</a>{{/unless}}
+                {{#if saved}}<a href="#" class="badge badge-danger">Unsave</a></h5>{{/if}}
+              </span>
+            </h5>
+            
+            <p class="card-text">{{summary}}</p>
+        
+          </div>
+          <div class="card-footer">
+             Posted on
+            <time datetime="{{publishDateISO}}">
+              <span class="date">{{publishDateDate}}</span>
+            </time>
+          </div>
+        </div>
+  <!-- end repeat -->
