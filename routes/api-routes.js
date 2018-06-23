@@ -106,12 +106,11 @@ router.get('/api/scrape/:pageNumber', function (req, res) {
         console.log(JSON.stringify(dbArticle, '', 2))
         res.json(dbArticle);
       })
-      
-    
-    
-
-
   }); // end POST new note route
+
+  router.post('/api/deletenote', function (req, res) {
+    res.json(req.body)
+  })
 
   
 module.exports = router;

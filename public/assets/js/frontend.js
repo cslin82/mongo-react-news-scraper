@@ -21,7 +21,16 @@ $(document).ready(function() {
     });
   })
 
+  $(document).on('click', '.action-deletenote', function (event) {
+    event.preventDefault();
+    // console.log('clicked deletenote ' + '\narticleId:' + $(this).parents().data('articleId') +
+    // '\nnoteId:' + $(this).data('noteId')
+    console.log($(this).data());
+    console.log($(this).parent().data());
+    
+  });
 
+  // /api/deletenote
 
   // $('.action-scrape').on('click', function (event) {
   //   event.preventDefault();
