@@ -35,7 +35,8 @@ router.get('/', function (req, res) {
 
     var hbsObject = {
       articles: docs,
-      title: 'Mozilla Blog scraper'
+      title: 'Mozilla Blog scraper',
+      pageIndex: true
     };
     res.render('index', hbsObject);
   })
@@ -54,10 +55,23 @@ router.get('/saved', function (req, res) {
 
     var hbsObject = {
       articles: docs,
-      title: 'Mozilla Blog scraper'
+      title: 'Mozilla Blog scraper',
+      pageSaved: true // the most comically hack-y way to do this, need to research handlebars contexts
     };
     res.render('index', hbsObject);
   })
+
+});
+
+/* GET help page. */
+router.get('/help', function (req, res) {
+
+  var hbsObject = {
+    title: 'Mozilla Blog scraper',
+    pageHelp: true
+  };
+  res.render('help', hbsObject);
+
 
 });
 
