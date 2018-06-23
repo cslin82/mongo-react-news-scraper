@@ -3,20 +3,27 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var ArticleSchema = new Schema({
-    title: String,
-    author: String,
+    title: {
+        type: String,
+        required: true,
+    },
+    author: {
+        type: String,
+        required: true,
+    },
     url: {
         type: String,
+        required: true,
         unique: true
     },
     summary: String,
     saved: Boolean,
     publishDate: Date,
 
-    // notes: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'Note'
-    // }
+    notes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Note'
+    }]
 
 
 });
