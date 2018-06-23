@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
       element.publishDateDate = moment(element.publishDate).format('LL');
       element.publishDateFull = moment(element.publishDate).format('LLL');
     });
-    console.log(JSON.stringify(docs, '', 2));
+    // console.log(JSON.stringify(docs, '', 2));
 
     var hbsObject = {
       articles: docs,
@@ -51,11 +51,11 @@ router.get('/saved', function (req, res) {
       element.publishDateDate = moment(element.publishDate).format('LL');
       element.publishDateFull = moment(element.publishDate).format('LLL');
     });
-    console.log(JSON.stringify(docs, '', 2));
+    // console.log(JSON.stringify(docs, '', 2));
 
     var hbsObject = {
       articles: docs,
-      title: 'Mozilla Blog scraper',
+      title: 'Mozilla Blog scraper - Saved only',
       pageSaved: true // the most comically hack-y way to do this, need to research handlebars contexts
     };
     res.render('index', hbsObject);
@@ -67,12 +67,10 @@ router.get('/saved', function (req, res) {
 router.get('/help', function (req, res) {
 
   var hbsObject = {
-    title: 'Mozilla Blog scraper',
+    title: 'Mozilla Blog scraper - Help',
     pageHelp: true
   };
   res.render('help', hbsObject);
-
-
 });
 
 router.get('/scrape', function (req, res) {

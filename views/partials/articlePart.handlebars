@@ -4,16 +4,29 @@
             <h5 class="card-title">
               {{!-- <span class="badge badge-success">New</span> --}}
               <a href="{{url}}">{{title}}</a>
-              <small class="card-text text-muted">by {{author}}</small>
               <span class="float-right">
                 {{#unless saved}}<a href="#" class="badge badge-primary action-save" data-article-id="{{_id}}">Save</a>{{/unless}}
-                {{#if saved}}<a href="#" class="badge badge-danger action-unsave" data-article-id="{{_id}}">Unsave</a></h5>{{/if}}
+                {{#if saved}}<a href="#" class="badge badge-danger action-unsave" data-article-id="{{_id}}">Unsave</a>{{/if}}
               </span>
             </h5>
+            <h6 class="card-subtitle text-muted mb-2">by {{author}}</h6>
             
             <p class="card-text">{{summary}}</p>
         
           </div>
+          
+          {{#if saved}}
+          <ul class="list-group list-group-flush">
+            {{#each notes}}
+            <li class="list-group-item"><a href="#" class="badge badge-danger action-unsave mr-2" data-note-id="{{this._id}}">Delete note</a>{{noteText}} {{this.noteText}}</li>
+          </ul>
+            {{/each}}
+
+          
+            {{#if notes}}
+            {{/if}}
+          {{/if}}
+
           <div class="card-footer">
              Posted on
              {{!-- replace this with handlebars helpers --}}
