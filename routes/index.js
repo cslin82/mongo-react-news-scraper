@@ -11,6 +11,8 @@ const scrapeURL = "https://blog.mozilla.org/";
 const moment = require('moment');
 
 const Article = require('../models/articleModel')
+const Note = require('../models/noteModel')
+
 
 
 // const tempObj = require('../tests/docs.json')
@@ -25,7 +27,7 @@ const Article = require('../models/articleModel')
 /* GET home page. */
 router.get('/', function (req, res) {
   Article.find({}, function (err, docs) {
-    if (err) throw err;
+    if (err) res.json(err);
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
@@ -44,14 +46,16 @@ router.get('/', function (req, res) {
 
 /* GET saved page. */
 router.get('/saved', function (req, res) {
-  Article.find({ saved: true }, function (err, docs) {
-    if (err) throw err;
+  Article.find({ saved: true })
+    .populate('notes')
+    .then(function (docs) {
+    // if (err) res.json(err);
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
       element.publishDateFull = moment(element.publishDate).format('LLL');
     });
-    // console.log(JSON.stringify(docs, '', 2));
+    console.log(JSON.stringify(docs, '', 2));
 
     var hbsObject = {
       articles: docs,
@@ -60,6 +64,11 @@ router.get('/saved', function (req, res) {
     };
     res.render('index', hbsObject);
   })
+  .catch(function(err) {
+    return res.json(err);
+  }
+
+  )
 
 });
 
