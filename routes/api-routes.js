@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 var request = require("request");
 
 const Article = require('../models/articleModel')
-
+const Note = require('../models/noteModel')
 
 const scrapeURL = "https://blog.mozilla.org/";
 
@@ -89,6 +89,29 @@ router.get('/api/scrape/:pageNumber', function (req, res) {
       } // end no error block
     }) // end request callback
   }) // end GET /scrape route
+
+
+  router.post('/api/article/:articleId', function (req, res) {
+    let newNote = { ...req.body };
+    console.log(newNote);
+
+    Note.create(newNote)
+      .then(function(mNote) {
+        console.log('mNote:');
+        
+        console.log(JSON.stringify(mNote, '', 2));
+        return Article.findOneAndUpdate({ _id: req.params.articleId }, { $push: {notes: mNote._id }}, {new: true})
+      })
+      .then(function(dbArticle) {
+        console.log(JSON.stringify(dbArticle, '', 2))
+        res.json(dbArticle);
+      })
+      
+    
+    
+
+
+  }); // end POST new note route
 
   
 module.exports = router;
