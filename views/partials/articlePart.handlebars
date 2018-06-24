@@ -16,15 +16,28 @@
           </div>
           
           {{#if saved}}
+            {{#if notes}}
           <ul class="list-group list-group-flush" >
             {{#each notes}}
             <li class="list-group-item"><a href="#" class="badge badge-danger action-deletenote mr-2" data-article-id="{{../_id}}" data-note-id="{{_id}}">Delete note</a>{{noteText}}</li>
-          </ul>
             {{/each}}
+          </ul>
+             {{/if}}
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+            
+                <form action="" method="post" class="note-form">
+                  <div class="form-group">
+                    <label for="note-text">New note</label>
+                    <input class="form-control" id="note-text" aria-describedby="noteHelp" name="note-text" placeholder="Enter note" type="text">
+                    <small id="noteHelp" class="form-text text-muted">Enter a note for article titled "Level Up with New Productivity Features in Firefox for iOS".</small>
+                    <input type="hidden" name="article-id" id="article-id" value="5b2db52694c08956eb6b64a1">
+                  </div>
+                </form>
+              </li>
+            </ul>
 
           
-            {{#if notes}}
-            {{/if}}
           {{/if}}
 
           <div class="card-footer">

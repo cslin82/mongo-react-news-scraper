@@ -114,12 +114,7 @@ router.post('/api/deletenote', function (req, res) {
   Note.deleteOne({ _id: req.body.noteId })
   .then(function (result) {
     res.json(result)
-    
   })
-  
-
-
-
 });
 
 

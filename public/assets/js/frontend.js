@@ -38,6 +38,24 @@ $(document).ready(function() {
     
   });
 
+  $(document).on('submit', 'form.note-form', function(event) {
+  // $("form").submit(function (event) {
+  // $("form").submit(function (event) {
+    event.preventDefault();
+
+    let tempNote = {
+      // not just the first note-text field
+      noteText: $('#note-text').val().trim(),
+      articleID: $('#article-id').val()
+    }
+
+    console.log(tempNote);
+
+    $.post("/api/article/" + tempNote.articleID, tempNote), function (data, status) {
+      console.log("Data: " + data + "\nStatus: " + status);
+    };
+
+  });
   // /api/deletenote
 
   // $('.action-scrape').on('click', function (event) {
