@@ -26,14 +26,16 @@ const Note = require('../models/noteModel')
 
 /* GET home page. */
 router.get('/', function (req, res) {
-  Article.find({ saved: false }, function (err, docs) {
-    if (err) res.json(err);
+  Article.find()
+    .populate('notes')
+    .then(function (docs) {
+    // if (err) res.json(err);
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
       element.publishDateFull = moment(element.publishDate).toISOString();
     });
-    // console.log(JSON.stringify(docs, '', 2));
+    console.log(JSON.stringify(docs, '', 2));
 
     var hbsObject = {
       articles: docs,
@@ -42,6 +44,9 @@ router.get('/', function (req, res) {
     };
     res.render('index', hbsObject);
   })
+  .catch(function(err) {
+    return res.json(err);
+  });
 });
 
 /* GET saved page. */
@@ -66,10 +71,7 @@ router.get('/saved', function (req, res) {
   })
   .catch(function(err) {
     return res.json(err);
-  }
-
-  )
-
+  });
 });
 
 /* GET help page. */
