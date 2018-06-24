@@ -26,7 +26,7 @@ const Note = require('../models/noteModel')
 
 /* GET home page. */
 router.get('/', function (req, res) {
-  Article.find({}, function (err, docs) {
+  Article.find({ saved: false }, function (err, docs) {
     if (err) res.json(err);
 
     docs.forEach(element => {
