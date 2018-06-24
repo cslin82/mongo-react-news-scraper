@@ -31,7 +31,10 @@ $(document).ready(function() {
       url: "/api/deletenote",
       data: $(this).data()
     })
-    .then((data) => console.log(data) )
+    .then((data) => {
+      console.log(data);
+      $(this).parent().remove();
+    } )
     
   });
 

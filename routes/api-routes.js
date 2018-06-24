@@ -109,7 +109,14 @@ router.post('/api/article/:articleId', function (req, res) {
 }); // end POST new note route
 
 router.post('/api/deletenote', function (req, res) {
-  res.json(req.body)
+  // TODO: pull from Article.notes
+  
+  Note.deleteOne({ _id: req.body.noteId })
+  .then(function (result) {
+    res.json(result)
+    
+  })
+  
 
 
 
