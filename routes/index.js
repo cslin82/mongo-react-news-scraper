@@ -31,7 +31,7 @@ router.get('/', function (req, res) {
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
-      element.publishDateFull = moment(element.publishDate).format('LLL');
+      element.publishDateFull = moment(element.publishDate).toISOString();
     });
     // console.log(JSON.stringify(docs, '', 2));
 
@@ -53,7 +53,7 @@ router.get('/saved', function (req, res) {
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
-      element.publishDateFull = moment(element.publishDate).format('LLL');
+      element.publishDateFull = moment(element.publishDate).toISOString();
     });
     console.log(JSON.stringify(docs, '', 2));
 
