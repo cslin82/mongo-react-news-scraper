@@ -29,7 +29,7 @@
                 <form action="/api/article" method="POST" class="note-form">
                   <div class="form-group">
                     <label for="note-text-{{_id}}">New note</label>
-                    <input class="form-control" id="note-text-{{_id}}" {{!--  aria-describedby="noteHelp"--}} name="note-text-{{_id}}" placeholder="Enter note" type="text">
+                    <input class="form-control" id="note-text-{{_id}}" {{!--  aria-describedby="noteHelp"--}} name="note-text" placeholder="Enter note" type="text">
                     <input type="hidden" name="article-id" id="article-id-{{_id}}" value="{{_id}}">
                   </div>
                 </form>
