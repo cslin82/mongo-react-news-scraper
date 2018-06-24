@@ -45,8 +45,8 @@ $(document).ready(function() {
 
     let tempNote = {
       // not just the first note-text field
-      noteText: $('#note-text').val().trim(),
-      articleID: $('#article-id').val()
+      noteText: $(this).find('#note-text').val().trim(),
+      articleID: $(this).find('#article-id').val()
     }
 
     console.log(tempNote);
