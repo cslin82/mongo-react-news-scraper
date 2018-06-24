@@ -109,10 +109,10 @@ router.post('/api/article/:articleId', function (req, res) {
 }); // end POST new note route
 
 router.post('/api/deletenote', function (req, res) {
-    res.json(req.body)
+  res.json(req.body)
 
 
-    
+
 });
 
 

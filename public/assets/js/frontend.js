@@ -25,14 +25,12 @@ $(document).ready(function() {
     event.preventDefault();
     // console.log('clicked deletenote ' + '\narticleId:' + $(this).parents().data('articleId') +
     // '\nnoteId:' + $(this).data('noteId')
-    let noteParams = {};
-    noteParams.data = {...$(this).data()};
-    noteParams.method = "POST";
-    noteParams.url = "/api/deletenote";
-    
-    console.log(JSON.stringify(noteParams, '', 2));
-
-    $.ajax(noteParams)
+   
+    $.ajax({
+      method: "POST",
+      url: "/api/deletenote",
+      data: $(this).data()
+    })
     .then((data) => console.log(data) )
     
   });
