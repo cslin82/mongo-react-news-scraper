@@ -51,9 +51,20 @@ $(document).ready(function() {
 
     console.log(tempNote);
 
-    $.post("/api/article/" + tempNote.articleID, tempNote), function (data, status) {
-      console.log("Data: " + data + "\nStatus: " + status);
-    };
+    // $.post("/api/article/" + tempNote.articleID, tempNote), function (data, status) {
+    //   console.log("Data: " + data + "\nStatus: " + status);
+    // };
+
+    $.ajax({
+      method: "POST",
+      url: "/api/article/" + tempNote.articleID,
+      data: tempNote
+    })
+    .then((data) => {
+      console.log(data);
+      location.reload();
+      // $(this).parent().remove();
+    } )
 
   });
   // /api/deletenote

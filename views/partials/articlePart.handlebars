@@ -17,7 +17,7 @@
           
           {{#if saved}}
             {{#if notes}}
-          <ul class="list-group list-group-flush" >
+          <ul class="list-group list-group-flush" id="note-list-{{_id}}">
             {{#each notes}}
             <li class="list-group-item"><a href="#" class="badge badge-danger action-deletenote mr-2" data-article-id="{{../_id}}" data-note-id="{{_id}}">Delete note</a>{{noteText}}</li>
             {{/each}}
