@@ -91,26 +91,29 @@ router.get('/api/scrape/:pageNumber', function (req, res) {
   }) // end GET /scrape route
 
 
-  router.post('/api/article/:articleId', function (req, res) {
-    let newNote = { ...req.body };
-    console.log(newNote);
+router.post('/api/article/:articleId', function (req, res) {
+  let newNote = { ...req.body };
+  console.log(newNote);
 
-    Note.create(newNote)
-      .then(function(mNote) {
-        console.log('mNote:');
-        
-        console.log(JSON.stringify(mNote, '', 2));
-        return Article.findOneAndUpdate({ _id: req.params.articleId }, { $push: {notes: mNote._id }}, {new: true})
-      })
-      .then(function(dbArticle) {
-        console.log(JSON.stringify(dbArticle, '', 2))
-        res.json(dbArticle);
-      })
-  }); // end POST new note route
+  Note.create(newNote)
+    .then(function (mNote) {
+      console.log('mNote:');
 
-  router.post('/api/deletenote', function (req, res) {
+      console.log(JSON.stringify(mNote, '', 2));
+      return Article.findOneAndUpdate({ _id: req.params.articleId }, { $push: { notes: mNote._id } }, { new: true })
+    })
+    .then(function (dbArticle) {
+      console.log(JSON.stringify(dbArticle, '', 2))
+      res.json(dbArticle);
+    })
+}); // end POST new note route
+
+router.post('/api/deletenote', function (req, res) {
     res.json(req.body)
-  })
 
-  
+
+    
+});
+
+
 module.exports = router;

@@ -16,9 +16,9 @@
           </div>
           
           {{#if saved}}
-          <ul class="list-group list-group-flush" data-article-id="{{_id}}">
+          <ul class="list-group list-group-flush" >
             {{#each notes}}
-            <li class="list-group-item"><a href="#" class="badge badge-danger action-deletenote mr-2" data-note-id="{{_id}}">Delete note</a>{{noteText}}</li>
+            <li class="list-group-item"><a href="#" class="badge badge-danger action-deletenote mr-2" data-article-id="{{../_id}}" data-note-id="{{_id}}">Delete note</a>{{noteText}}</li>
           </ul>
             {{/each}}
 
