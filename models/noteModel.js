@@ -4,10 +4,6 @@ var Schema = mongoose.Schema;
 
 var NoteSchema = new Schema({
     noteText: String
-
-    // article: { type: Schema.Types.ObjectId, ref: 'Article' }
-
-
 });
 
 var Note = mongoose.model("Note", NoteSchema);

@@ -4,9 +4,6 @@ var router = express.Router();
 var cheerio = require("cheerio");
 var request = require("request");
 
-// var mongoose = require("mongoose");
-
-const scrapeURL = "https://blog.mozilla.org/";
 
 const moment = require('moment');
 
@@ -14,28 +11,19 @@ const Article = require('../models/articleModel')
 const Note = require('../models/noteModel')
 
 
-
-// const tempObj = require('../tests/docs.json')
-
-// replace this with handlebars helpers
-// tempObj.forEach(element => {
-//   element.publishDateDate = moment(element.publishDate).format('LL');
-//   element.publishDateFull = moment(element.publishDate).format('LLL');
-// });
-
+const scrapeURL = "https://blog.mozilla.org/";
 
 /* GET home page. */
 router.get('/', function (req, res) {
   Article.find()
     .populate('notes')
     .then(function (docs) {
-    // if (err) res.json(err);
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
       element.publishDateFull = moment(element.publishDate).toISOString();
     });
-    console.log(JSON.stringify(docs, '', 2));
+    // console.log(JSON.stringify(docs, '', 2));
 
     var hbsObject = {
       articles: docs,
@@ -54,13 +42,12 @@ router.get('/saved', function (req, res) {
   Article.find({ saved: true })
     .populate('notes')
     .then(function (docs) {
-    // if (err) res.json(err);
 
     docs.forEach(element => {
       element.publishDateDate = moment(element.publishDate).format('LL');
       element.publishDateFull = moment(element.publishDate).toISOString();
     });
-    console.log(JSON.stringify(docs, '', 2));
+    // console.log(JSON.stringify(docs, '', 2));
 
     var hbsObject = {
       articles: docs,
@@ -85,6 +72,7 @@ router.get('/help', function (req, res) {
 });
 
 router.get('/scrape', function (req, res) {
+  // TODO convert to using axios instead, use promises
   // make request from news site, pass stream
   request(scrapeURL, function (error, response, html) {
     if (error) {
@@ -96,8 +84,6 @@ router.get('/scrape', function (req, res) {
       var $ = cheerio.load(html);
   
       // store in mongo via mongoose
-      // With cheerio, find each p-tag with the "title" class
-      // (i: iterator. element: the current element)
       $("article.post").each(function (i, element) {
         let title = $('h2.entry-title', element).text().trim();
         let url = $('a.go', element).attr("href").trim();
@@ -118,8 +104,6 @@ router.get('/scrape', function (req, res) {
           saved: false
         }
 
-        // console.log('newArticleObj:', newArticleObj);
-
         let newArticle = new Article(newArticleObj)
           .save(function (err) {
             if (err) console.error(err);
@@ -134,7 +118,5 @@ router.get('/scrape', function (req, res) {
     } // end no error block
   }) // end request callback
 }) // end GET /scrape route
-
-
 
 module.exports = router;

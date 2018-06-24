@@ -23,8 +23,6 @@ $(document).ready(function() {
 
   $(document).on('click', '.action-deletenote', function (event) {
     event.preventDefault();
-    // console.log('clicked deletenote ' + '\narticleId:' + $(this).parents().data('articleId') +
-    // '\nnoteId:' + $(this).data('noteId')
    
     $.ajax({
       method: "POST",
@@ -39,8 +37,6 @@ $(document).ready(function() {
   });
 
   $(document).on('submit', 'form.note-form', function(event) {
-  // $("form").submit(function (event) {
-  // $("form").submit(function (event) {
     event.preventDefault();
 
     let tempNote = {
@@ -48,12 +44,6 @@ $(document).ready(function() {
       noteText: $(this).find('input[name=note-text]').val().trim(),
       articleID: $(this).find('input[name=article-id]').val()
     }
-
-    console.log(tempNote);
-
-    // $.post("/api/article/" + tempNote.articleID, tempNote), function (data, status) {
-    //   console.log("Data: " + data + "\nStatus: " + status);
-    // };
 
     $.ajax({
       method: "POST",
@@ -67,13 +57,5 @@ $(document).ready(function() {
     } )
 
   });
-  // /api/deletenote
-
-  // $('.action-scrape').on('click', function (event) {
-  //   event.preventDefault();
-  //   console.log('clicked scrape');
-    
-  // })
-
 
 });
