@@ -5,7 +5,7 @@ $(document).ready(function() {
     console.log('clicked save ' + $(this).data('articleId'));
     
     $.ajax({
-      url: '/api/savestory/' + $(this).data('articleId'),
+      url: '/api/togglestory/' + $(this).data('articleId'),
       success: () => location.reload(),
     });
   })
@@ -16,7 +16,7 @@ $(document).ready(function() {
     console.log('clicked unsave ' + $(this).data('articleId'));
     
     $.ajax({
-      url: '/api/unsavestory/' + $(this).data('articleId'),
+      url: '/api/togglestory/' + $(this).data('articleId'),
       success: () => location.reload(),
     });
   })

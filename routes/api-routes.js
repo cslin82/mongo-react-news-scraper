@@ -39,6 +39,20 @@ router.get('/api/unsavestory/:storyID', function(req, res) {
       });
 }); // end GET /api
 
+// DRY this up later
+router.get('/api/togglestory/:storyID', function(req, res) {
+  console.log(req.params.storyID);
+
+  Article.findById(req.params.storyID, function (err, article) {
+      if (err) return handleError(err);
+
+      article.set({ saved: !article.saved });
+      article.save(function (err, updatedarticle) {
+        if (err) return handleError(err);
+        res.send(updatedarticle);
+      });
+    });
+}); // end GET /api
 
 
 router.get('/api/scrape/:pageNumber', function (req, res) {
