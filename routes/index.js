@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var cheerio = require("cheerio");
-var request = require("request");
+const cheerio = require("cheerio");
+const request = require("request");
 
 
 const moment = require('moment');

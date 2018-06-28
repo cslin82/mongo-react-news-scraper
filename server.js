@@ -4,23 +4,15 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const exphbs  = require('express-handlebars');
 
-var PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8080;
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-// Connect to the Mongo DB
-// TODO: Make server listen wait for mongoose connection and see what conventional structure is
-mongoose.connect(MONGODB_URI)
-  .then(
-    () => {
-      console.log('connected to ' + MONGODB_URI);
-    },
-    err => { throw err }
-  );
+
 
 // Initialize Express
-var app = express();
+const app = express();
 
 // Configure middleware
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
@@ -36,15 +28,26 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // Routes
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 app.use('/', indexRouter);
 
 // Routes
 // TODO: investigate clever ways to shorten this
-var apiRouter = require('./routes/api-routes');
+const apiRouter = require('./routes/api-routes');
 app.use('/', apiRouter);
 
-// Start the server
-app.listen(PORT, function() {
-  console.log("App running on port " + PORT + "; go to http://localhost:" + PORT + "/");
-});
+// Connect to the Mongo DB
+// TODO: Make server listen wait for mongoose connection and see what conventional structure is
+mongoose.connect(MONGODB_URI)
+  .then(() => {
+    console.log('connected to ' + MONGODB_URI)
+    // Start the server
+    app.listen(PORT, function () {
+      console.log("App running on port " + PORT + "; go to http://localhost:" + PORT + "/");
+    });
+  }
+  )
+  .catch(
+    (err) => { throw err }
+  );
+
