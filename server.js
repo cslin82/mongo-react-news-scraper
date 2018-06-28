@@ -45,9 +45,7 @@ mongoose.connect(MONGODB_URI)
     app.listen(PORT, function () {
       console.log("App running on port " + PORT + "; go to http://localhost:" + PORT + "/");
     });
-  }
-  )
-  .catch(
-    (err) => { throw err }
-  );
-
+  })
+  .catch((err) => {
+    console.error(err.message);
+  });
