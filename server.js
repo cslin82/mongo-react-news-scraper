@@ -4,10 +4,10 @@ const logger = require("morgan");
 const mongoose = require("mongoose");
 const exphbs  = require('express-handlebars');
 
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3001;
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines3";
 
 
 
@@ -43,7 +43,7 @@ mongoose.connect(MONGODB_URI)
     console.log('connected to ' + MONGODB_URI)
     // Start the server
     app.listen(PORT, function () {
-      console.log("App running on port " + PORT + "; go to http://localhost:" + PORT + "/");
+      console.log("API server running on port " + PORT + "; go to http://localhost:" + PORT + "/");
     });
   })
   .catch((err) => {

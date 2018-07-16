@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const cheerio = require("cheerio");
-// var request = require("request");
+var request = require("request");
 const axios = require('axios');
 
 const Article = require('../models/articleModel')
