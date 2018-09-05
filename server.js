@@ -2,30 +2,32 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const logger = require("morgan");
 const mongoose = require("mongoose");
-const exphbs  = require('express-handlebars');
 
 const PORT = process.env.PORT || 3001;
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines3";
-
-
+const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlinesreact";
 
 // Initialize Express
 const app = express();
 
-// Configure middleware
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
-app.set('view engine', 'handlebars');
-
 // Use morgan logger for logging requests
-app.use(logger("dev"));
+if (process.env.NODE_ENV === "production") {
+  app.use(require('morgan')('common'));
+} else {
+  app.use(require('morgan')('dev'));
+}
+
 // Use body-parser for handling form submissions
 // Seriously, don't forget all the kinds to be used
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
-app.use(express.static("public"));
+// app.use(express.static("public"));
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+} 
 
 // Routes
 const indexRouter = require('./routes/index');
