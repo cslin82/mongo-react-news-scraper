@@ -1,7 +1,7 @@
 {
-  "name": "mongo-news-scraper",
+  "name": "mongo-react-news-scraper",
   "version": "0.1.0",
-  "description": "News Scraper using MongoDB",
+  "description": "News Scraper using MongoDB and React",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,26 +15,25 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/cslin82/Mongo-News-Scraper.git"
+    "url": "git+https://github.com/cslin82/mongo-react-news-scraper.git"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^4.0.1",
-    "nodemon": "^1.18.3"
+    "nodemon": "^1.18.4"
   },
   "bugs": {
-    "url": "https://github.com/cslin82/Mongo-News-Scraper/issues"
+    "url": "https://github.com/cslin82/mongo-react-news-scraper/issues"
   },
-  "homepage": "https://github.com/cslin82/Mongo-News-Scraper#readme",
+  "homepage": "https://github.com/cslin82/mongo-react-news-scraper#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.3",
-    "express-handlebars": "^3.0.0",
     "moment": "^2.22.2",
-    "mongoose": "^5.2.12",
+    "mongoose": "^5.2.13",
     "morgan": "^1.9.0",
     "request": "^2.88.0"
   }

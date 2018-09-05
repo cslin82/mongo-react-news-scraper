@@ -1,28 +1,26 @@
-# Mongo-News-Scraper
+# Mongo News Scraper with React
 
 ## Task
 
-This full-stack news app uses Express, Handlebars, Node.js, Mongoose/MongoDB, cheerio, jQuery, and Bootstrap to allow users to save/unsave and comment on posts from the [Mozilla Blog](https://blog.mozilla.org/). It introduces the use of MongoDB and Mongoose.
+This full-stack single-page news app adds a React front end to the previous Mongo News Scraper. It continues to use Express, Node.js, Mongoose/MongoDB, and cheerio to allow users to save/unsave and comment on posts from the [Mozilla Blog](https://blog.mozilla.org/). It also introduces conversion of a server-rendered app to a React app.
 
 ## Concepts and technologies
 
-* New: Mongoose and MongoDB
-* New: Scraping server-side using cheerio
+* New: React, React Router, controlled forms
+* New: RESTful API creation
+* New: Semantic UI
+* Mongoose and MongoDB
+* Scraping server-side using cheerio
 * Express.js running on Node.js
-* Handlebars.js and rendering middleware
-* Using APIs and AJAX calls
+* Writing APIs and calls from frontend
 * NPM for JS library management
 * Custom Node.js modules and modular design, spreading logic and data across multiple files
-* Deploying full-stack apps to Heroku
-* Front-end technolgies (HTML, CSS, jQuery), HTML forms
-* New: Bootstrap 4.1
+* Deploying full MERN stack apps to Heroku
 
 ## Enhancements
 
-* Use jQuery or other animations for notes appearing and disappearing
 * Add UI for scraping deeper
 * Incorporate data validation
-* Polish frontend
 * Write mocha/chai tests
 
 ## TODO
@@ -33,4 +31,3 @@ This full-stack news app uses Express, Handlebars, Node.js, Mongoose/MongoDB, ch
 * Make deletes also delete ref in article model
 * Use return data from API AJAX calls
 * Convert scrape request to axios
-* Move moment calls to handlebars helpers
