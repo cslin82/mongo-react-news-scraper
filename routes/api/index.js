@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const cheerio = require('cheerio');
-var request = require('request');
 const axios = require('axios');
 
 const Article = require('../../models/articleModel');
@@ -56,15 +55,14 @@ router.get('/scrape/:pageNumber', function(req, res) {
 
   let scrapeURLPage = scrapeURL + 'page/' + req.params.pageNumber + '/';
 
-  // make request from news site, pass stream
-  request(scrapeURLPage, function(error, response, html) {
-    if (error) {
-      res.status(500).json(error);
-    } else {
+  axios
+    .get(scrapeURLPage)
+    .then(function(response) {
       console.log('pulling articles from ', scrapeURLPage);
 
       // cheerio parse data stream
-      var $ = cheerio.load(html);
+      const $ = cheerio.load(response.data);
+      console.log(response.data);
 
       let newArticles = [];
 
@@ -107,8 +105,10 @@ router.get('/scrape/:pageNumber', function(req, res) {
       });
       res.json(newArticles);
       // TODO: figure out what to actually send back on scrape
-    } // end no error block
-  }); // end request callback
+    })
+    .catch(function(error) {
+      res.status(500).json(error);
+    });
 }); // end GET /scrape route
 
 router.post('/article/:articleId', function(req, res) {
@@ -137,9 +137,11 @@ router.post('/deletenote', function(req, res) {
 });
 
 router.route('/articles').get(function(req, res) {
-  Article.find(function(err, articles) {
-    res.json(articles);
-  });
+  Article.find()
+    .sort('-publishDate')
+    .exec(function(err, articles) {
+      res.json(articles);
+    });
 });
 
 module.exports = router;
