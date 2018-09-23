@@ -5,12 +5,12 @@ const cheerio = require('cheerio');
 var request = require('request');
 const axios = require('axios');
 
-const Article = require('../models/articleModel');
-const Note = require('../models/noteModel');
+const Article = require('../../models/articleModel');
+const Note = require('../../models/noteModel');
 
 const scrapeURL = 'https://blog.mozilla.org/';
 
-router.get('/api/savestory/:storyID', function(req, res) {
+router.get('/savestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
 
   Article.findById(req.params.storyID, function(err, article) {
@@ -22,10 +22,10 @@ router.get('/api/savestory/:storyID', function(req, res) {
       res.send(updatedarticle);
     });
   });
-}); // end GET /api
+}); // end GET
 
 // DRY this up later
-router.get('/api/unsavestory/:storyID', function(req, res) {
+router.get('/unsavestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
 
   Article.findById(req.params.storyID, function(err, article) {
@@ -37,10 +37,10 @@ router.get('/api/unsavestory/:storyID', function(req, res) {
       res.send(updatedarticle);
     });
   });
-}); // end GET /api
+}); // end GET
 
 // DRY this up later
-router.get('/api/togglestory/:storyID', function(req, res) {
+router.get('/togglestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
 
   Article.findById(req.params.storyID, function(err, article) {
@@ -52,9 +52,9 @@ router.get('/api/togglestory/:storyID', function(req, res) {
       res.send(updatedarticle);
     });
   });
-}); // end GET /api
+}); // end GET
 
-router.get('/api/scrape/:pageNumber', function(req, res) {
+router.get('/scrape/:pageNumber', function(req, res) {
   console.log('req.params.pageNumber:', req.params.pageNumber, '(' + typeof req.params.pageNumber + ')');
 
   let scrapeURLPage = scrapeURL + 'page/' + req.params.pageNumber + '/';
@@ -110,7 +110,7 @@ router.get('/api/scrape/:pageNumber', function(req, res) {
   }); // end request callback
 }); // end GET /scrape route
 
-router.post('/api/article/:articleId', function(req, res) {
+router.post('/article/:articleId', function(req, res) {
   let newNote = { ...req.body };
   console.log(newNote);
 
@@ -127,7 +127,7 @@ router.post('/api/article/:articleId', function(req, res) {
     });
 }); // end POST new note route
 
-router.post('/api/deletenote', function(req, res) {
+router.post('/deletenote', function(req, res) {
   // TODO: pull from Article.notes
 
   Note.deleteOne({ _id: req.body.noteId }).then(function(result) {

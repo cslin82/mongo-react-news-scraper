@@ -1,18 +1,19 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
-const mongoose = require("mongoose");
+const express = require('express');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
+const mongoose = require('mongoose');
+const routes = require('./routes');
 
 const PORT = process.env.PORT || 3001;
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlinesreact";
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlinesreact';
 
 // Initialize Express
 const app = express();
 
 // Use morgan logger for logging requests
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   app.use(require('morgan')('common'));
 } else {
   app.use(require('morgan')('dev'));
@@ -25,9 +26,15 @@ app.use(bodyParser.json());
 // Use express.static to serve the public folder as a static directory
 // app.use(express.static("public"));
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-} 
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(logger('common'));
+} else {
+  app.use(logger('dev'));
+}
 
 // Routes
 const indexRouter = require('./routes/index');
@@ -35,19 +42,20 @@ app.use('/', indexRouter);
 
 // Routes
 // TODO: investigate clever ways to shorten this
-const apiRouter = require('./routes/api-routes');
-app.use('/', apiRouter);
+// Add routes, both API and view
+app.use(routes);
 
 // Connect to the Mongo DB
 // TODO: Make server listen wait for mongoose connection and see what conventional structure is
-mongoose.connect(MONGODB_URI)
+mongoose
+  .connect(MONGODB_URI)
   .then(() => {
-    console.log('connected to ' + MONGODB_URI)
+    console.log('connected to ' + MONGODB_URI);
     // Start the server
-    app.listen(PORT, function () {
-      console.log("API server running on port " + PORT + "; go to http://localhost:" + PORT + "/");
+    app.listen(PORT, function() {
+      console.log('API server running on port ' + PORT + '; go to http://localhost:' + PORT + '/');
     });
   })
-  .catch((err) => {
+  .catch(err => {
     console.error(err.message);
   });
