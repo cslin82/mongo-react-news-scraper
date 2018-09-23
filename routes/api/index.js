@@ -14,11 +14,10 @@ router.get('/savestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
 
   Article.findById(req.params.storyID, function(err, article) {
-    if (err) return handleError(err);
-
+    if (err) res.status(500).json(err);
     article.set({ saved: true });
     article.save(function(err, updatedarticle) {
-      if (err) return handleError(err);
+      if (err) res.status(500).json(err);
       res.send(updatedarticle);
     });
   });
@@ -29,11 +28,10 @@ router.get('/unsavestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
 
   Article.findById(req.params.storyID, function(err, article) {
-    if (err) return handleError(err);
-
+    if (err) res.status(500).json(err);
     article.set({ saved: false });
     article.save(function(err, updatedarticle) {
-      if (err) return handleError(err);
+      if (err) res.status(500).json(err);
       res.send(updatedarticle);
     });
   });
@@ -44,12 +42,11 @@ router.get('/togglestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
 
   Article.findById(req.params.storyID, function(err, article) {
-    if (err) return handleError(err);
-
+    if (err) res.status(500).json(err);
     article.set({ saved: !article.saved });
     article.save(function(err, updatedarticle) {
-      if (err) return handleError(err);
-      res.send(updatedarticle);
+      if (err) res.status(500).json(err);
+      res.json(updatedarticle);
     });
   });
 }); // end GET
@@ -68,6 +65,8 @@ router.get('/scrape/:pageNumber', function(req, res) {
 
       // cheerio parse data stream
       var $ = cheerio.load(html);
+
+      let newArticles = [];
 
       // store in mongo via mongoose
       // With cheerio, find each p-tag with the "title" class
@@ -104,8 +103,10 @@ router.get('/scrape/:pageNumber', function(req, res) {
           if (err) console.error(err);
           console.log('saved');
         });
+        newArticles.push(newArticleObj);
       });
-      res.send('scraped articles from ' + scrapeURLPage);
+      res.json(newArticles);
+      // TODO: figure out what to actually send back on scrape
     } // end no error block
   }); // end request callback
 }); // end GET /scrape route
@@ -132,6 +133,12 @@ router.post('/deletenote', function(req, res) {
 
   Note.deleteOne({ _id: req.body.noteId }).then(function(result) {
     res.json(result);
+  });
+});
+
+router.route('/articles').get(function(req, res) {
+  Article.find(function(err, articles) {
+    res.json(articles);
   });
 });
 
