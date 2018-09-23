@@ -4,50 +4,28 @@ const router = express.Router();
 const cheerio = require('cheerio');
 const axios = require('axios');
 
+const validator = require('validator');
+
 const Article = require('../../models/articleModel');
 const Note = require('../../models/noteModel');
 
 const scrapeURL = 'https://blog.mozilla.org/';
 
-router.get('/savestory/:storyID', function(req, res) {
-  console.log(req.params.storyID);
-
-  Article.findById(req.params.storyID, function(err, article) {
-    if (err) res.status(500).json(err);
-    article.set({ saved: true });
-    article.save(function(err, updatedarticle) {
-      if (err) res.status(500).json(err);
-      res.send(updatedarticle);
-    });
-  });
-}); // end GET
-
-// DRY this up later
-router.get('/unsavestory/:storyID', function(req, res) {
-  console.log(req.params.storyID);
-
-  Article.findById(req.params.storyID, function(err, article) {
-    if (err) res.status(500).json(err);
-    article.set({ saved: false });
-    article.save(function(err, updatedarticle) {
-      if (err) res.status(500).json(err);
-      res.send(updatedarticle);
-    });
-  });
-}); // end GET
-
-// DRY this up later
+// TODO make this RESTful with put on articles
 router.get('/togglestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
-
-  Article.findById(req.params.storyID, function(err, article) {
-    if (err) res.status(500).json(err);
-    article.set({ saved: !article.saved });
-    article.save(function(err, updatedarticle) {
+  if (!validator.isHexadecimal(req.params.storyID)) {
+    res.status(500).send('Invalid storyID');
+  } else {
+    Article.findById(req.params.storyID, function(err, article) {
       if (err) res.status(500).json(err);
-      res.json(updatedarticle);
+      article.set({ saved: !article.saved });
+      article.save(function(err, updatedarticle) {
+        if (err) res.status(500).json(err);
+        res.json(updatedarticle);
+      });
     });
-  });
+  }
 }); // end GET
 
 router.get('/scrape/:pageNumber', function(req, res) {

@@ -14,9 +14,9 @@ const app = express();
 
 // Use morgan logger for logging requests
 if (process.env.NODE_ENV === 'production') {
-  app.use(require('morgan')('common'));
+  app.use(logger('common'));
 } else {
-  app.use(require('morgan')('dev'));
+  app.use(logger('dev'));
 }
 
 // Use body-parser for handling form submissions
@@ -30,12 +30,6 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 
-if (process.env.NODE_ENV === 'production') {
-  app.use(logger('common'));
-} else {
-  app.use(logger('dev'));
-}
-
 // Routes
 // TODO: investigate clever ways to shorten this
 // Add routes, both API and view
@@ -44,7 +38,10 @@ app.use(routes);
 // Connect to the Mongo DB
 // TODO: Make server listen wait for mongoose connection and see what conventional structure is
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
+  .connect(
+    MONGODB_URI,
+    { useNewUrlParser: true }
+  )
   .then(() => {
     console.log('connected to ' + MONGODB_URI);
     // Start the server
