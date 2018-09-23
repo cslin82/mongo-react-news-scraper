@@ -48,7 +48,7 @@ app.use(routes);
 // Connect to the Mongo DB
 // TODO: Make server listen wait for mongoose connection and see what conventional structure is
 mongoose
-  .connect(MONGODB_URI)
+  .connect(MONGODB_URI, { useNewUrlParser: true })
   .then(() => {
     console.log('connected to ' + MONGODB_URI);
     // Start the server
