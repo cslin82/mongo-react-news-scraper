@@ -37,10 +37,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 // Routes
-const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
-
-// Routes
 // TODO: investigate clever ways to shorten this
 // Add routes, both API and view
 app.use(routes);
