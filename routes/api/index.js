@@ -14,7 +14,7 @@ const scrapeURL = 'https://blog.mozilla.org/';
 // TODO make this RESTful with put on articles
 router.get('/togglestory/:storyID', function(req, res) {
   console.log(req.params.storyID);
-  if (!validator.isHexadecimal(req.params.storyID)) {
+  if (!validator.isMongoId(req.params.storyID)) {
     res.status(500).send('Invalid storyID');
   } else {
     Article.findById(req.params.storyID, function(err, article) {
@@ -28,8 +28,9 @@ router.get('/togglestory/:storyID', function(req, res) {
   }
 }); // end GET
 
+// TODO expect a number
 router.get('/scrape/:pageNumber', function(req, res) {
-  console.log('req.params.pageNumber:', req.params.pageNumber, '(' + typeof req.params.pageNumber + ')');
+  // console.log('req.params.pageNumber:', req.params.pageNumber, '(' + typeof req.params.pageNumber + ')');
 
   let scrapeURLPage = scrapeURL + 'page/' + req.params.pageNumber + '/';
 
