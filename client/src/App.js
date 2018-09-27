@@ -3,15 +3,19 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { Container, Grid, Segment, Header } from 'semantic-ui-react';
 
+import Home from './Pages/Home';
+import Saved from './Pages/Saved';
+import Help from './Pages/Help';
+
 class App extends Component {
   render() {
     return (
       <Container>
         <Router>
           <Switch>
-            <Route exact path="/saved" />
-            <Route exact path="/help" />
-            <Route exact path="/" />
+            <Route exact path="/saved" component={Saved} />
+            <Route exact path="/help"component={Help}  />
+            <Route exact path="/" component={Home} />
             {/* <Route /> */}
 
             <header className="App-header">
