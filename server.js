@@ -14,31 +14,19 @@ const app = express();
 
 // Use morgan logger for logging requests
 if (process.env.NODE_ENV === 'production') {
-  app.use(require('morgan')('common'));
-} else {
-  app.use(require('morgan')('dev'));
-}
-
-// Use body-parser for handling form submissions
-// Seriously, don't forget all the kinds to be used
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-// Use express.static to serve the public folder as a static directory
-// app.use(express.static("public"));
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-
-if (process.env.NODE_ENV === 'production') {
   app.use(logger('common'));
 } else {
   app.use(logger('dev'));
 }
 
-// Routes
-const indexRouter = require('./routes/index');
-app.use('/', indexRouter);
+// Use body-parser for handling form submissions
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 // Routes
 // TODO: investigate clever ways to shorten this
@@ -48,7 +36,10 @@ app.use(routes);
 // Connect to the Mongo DB
 // TODO: Make server listen wait for mongoose connection and see what conventional structure is
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
+  .connect(
+    MONGODB_URI,
+    { useNewUrlParser: true }
+  )
   .then(() => {
     console.log('connected to ' + MONGODB_URI);
     // Start the server
