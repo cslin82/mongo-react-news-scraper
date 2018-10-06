@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
+import ArticleView from '../../components/ArticleView';
 
 const Home = props => {
   return (
     <div>
-      Home
       <ul>
-        {/* {JSON.stringify(props.articles, '', 2)} */}
         {props.articles.map(i => (
-          <li key={i._id}>
-            <a href={i.url}>{i.title}</a>
-            {i.saved && ' saved'}
-          </li>
+          <ArticleView key={i._id} article={i} />
         ))}
       </ul>
     </div>
