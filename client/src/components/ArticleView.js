@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import { Container, Grid, Segment, Header } from 'semantic-ui-react';
 
-class ArticleView extends Component {
-  state = {};
-  render() {
-    return <Container />;
-  }
-}
+const ArticleView = props => {
+  return <div>ArticleView</div>;
+};
 
 export default ArticleView;

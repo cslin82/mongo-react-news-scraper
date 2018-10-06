@@ -8,7 +8,6 @@ This full-stack single-page news app adds a React front end to the previous Mong
 
 * New: React, React Router, controlled forms
 * New: RESTful API creation
-* New: Semantic UI
 * Mongoose and MongoDB
 * Scraping server-side using cheerio
 * Express.js running on Node.js
