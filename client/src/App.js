@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, NavLink as RRNavLink } from 'react-router-dom';
 
-import { Nav, NavBar, NavItem, Jumbotron, Navbar } from 'reactstrap';
+import { Nav, NavItem, Jumbotron, Navbar, NavLink } from 'reactstrap';
 
 import Home from './Pages/Home';
 import Saved from './Pages/Saved';
@@ -30,16 +30,22 @@ class App extends Component {
         <Router>
           <div>
             <Navbar color="light" light expand="md">
-              <Nav>
+              <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink to="/">Home</NavLink>
+                  <NavLink>
+                    <RRNavLink to="/">Home</RRNavLink>
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/saved">Saved</NavLink>
+                  <NavLink>
+                    <RRNavLink to="/saved">Saved</RRNavLink>
+                  </NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink to="/help">Help</NavLink>
-                </NavItem>{' '}
+                  <NavLink>
+                    <RRNavLink to="/help">Help</RRNavLink>
+                  </NavLink>
+                </NavItem>
               </Nav>
             </Navbar>
             <Jumbotron>
@@ -56,7 +62,7 @@ class App extends Component {
               <Route exact path="/saved" component={Saved} />
               <Route exact path="/help" component={Help} />
               <Route exact path="/" render={props => <Home {...props} articles={this.state.articles} />} />
-            </Switch>{' '}
+            </Switch>
           </div>
         </Router>
       </div>
