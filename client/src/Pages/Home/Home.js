@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ArticleView from '../../components/ArticleView';
 
 const Home = props => {
@@ -12,11 +12,9 @@ const Home = props => {
   }
   return (
     <div>
-      <ul>
-        {articlesDisp.map(i => (
-          <ArticleView key={i._id} article={i} />
-        ))}
-      </ul>
+      {articlesDisp.map(i => (
+        <ArticleView key={i._id} article={i} saved={saved} />
+      ))}
     </div>
   );
 };

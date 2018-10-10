@@ -67,9 +67,8 @@ class App extends Component {
                   <p className="d-block mb-3 text-center">
                     <i className="fab fa-github" />
                     <a href="https://github.com/cslin82/mongo-react-news-scraper">
-                      {' '}
                       @cslin82/mongo-react-news-scraper
-                    </a>{' '}
+                    </a>
                     on GitHub
                   </p>
                 </div>
