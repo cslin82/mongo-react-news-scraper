@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch, NavLink as RRNavLink } from 'react-router-dom';
+// import { BrowserRouter as Router, Route, Switch, NavLink as RRNavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import { Nav, NavItem, Jumbotron, Navbar, NavLink } from 'reactstrap';
+import { Nav, NavItem, Jumbotron, Navbar, NavLink, Button } from 'reactstrap';
 
 import Home from './Pages/Home';
 import Help from './Pages/Help';
@@ -20,6 +21,12 @@ class App extends Component {
   loadArticles = () => {
     API.getPosts().then(res => {
       this.setState({ articles: res.data });
+    });
+  };
+
+  scrapeArticles = () => {
+    API.scrape().then(() => {
+      this.loadArticles();
     });
   };
 
@@ -48,9 +55,9 @@ class App extends Component {
                   This Node.js-Express-MongoDB-Mongoose app scrapes blog posts from Mozilla into a Mongo database. It
                   lets you save and make notes on them.
                 </p>
-                <a className="btn btn-primary btn-block action-scrape" href="/scrape" role="button">
+                <Button color="primary" block onClick={this.scrapeArticles}>
                   Scrape new stories
-                </a>
+                </Button>
               </Jumbotron>
               <Switch>
                 <Route exact path="/saved" render={props => <Home {...props} articles={this.state.articles} saved />} />
@@ -66,9 +73,7 @@ class App extends Component {
                   <p className="d-block bg-secondary mb-3 p-1 text-light text-center rounded">All caught up!</p>
                   <p className="d-block mb-3 text-center">
                     <i className="fab fa-github" />
-                    <a href="https://github.com/cslin82/mongo-react-news-scraper">
-                      @cslin82/mongo-react-news-scraper
-                    </a>
+                    <a href="https://github.com/cslin82/mongo-react-news-scraper">@cslin82/mongo-react-news-scraper</a>
                     on GitHub
                   </p>
                 </div>

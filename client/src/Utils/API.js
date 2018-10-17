@@ -15,5 +15,9 @@ export default {
   },
   deleteNote: function(noteID) {
     return axios.delete('/api/notes/' + noteID);
+  },
+  echo: function(whateverdata) {
+    console.log(whateverdata);
+    return axios.post('/api/echo', whateverdata);
   }
 };
