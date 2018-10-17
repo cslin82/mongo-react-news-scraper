@@ -29,10 +29,12 @@ router.get('/togglestory/:storyID', function(req, res) {
 }); // end GET
 
 // TODO expect a number
-router.get('/scrape/:pageNumber', function(req, res) {
+router.get('/scrape(/:pageNumber(d+))?', function(req, res) {
   // console.log('req.params.pageNumber:', req.params.pageNumber, '(' + typeof req.params.pageNumber + ')');
-
-  let scrapeURLPage = scrapeURL + 'page/' + req.params.pageNumber + '/';
+  let scrapeURLPage;
+  req.params.pageNumber
+    ? (scrapeURLPage = scrapeURL + 'page/' + req.params.pageNumber + '/')
+    : (scrapeURLPage = scrapeURL);
 
   axios
     .get(scrapeURLPage)
@@ -41,7 +43,7 @@ router.get('/scrape/:pageNumber', function(req, res) {
 
       // cheerio parse data stream
       const $ = cheerio.load(response.data);
-      console.log(response.data);
+      // console.log(response.data);
 
       let newArticles = [];
 
@@ -121,6 +123,11 @@ router.route('/articles').get(function(req, res) {
     .exec(function(err, articles) {
       res.json(articles);
     });
+});
+
+router.all('/echo', function(req, res) {
+  console.log(req.body);
+  res.json(req.body);
 });
 
 module.exports = router;
