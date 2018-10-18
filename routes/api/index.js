@@ -11,14 +11,14 @@ const Note = require('../../models/noteModel');
 
 const scrapeURL = 'https://blog.mozilla.org/';
 
-// TODO make this RESTful with put on articles
-router.get('/togglestory/:storyID', function(req, res) {
-  console.log(req.params.storyID);
-  if (!validator.isMongoId(req.params.storyID)) {
-    res.status(500).send('Invalid storyID');
+router.put('/articles/:articleId', function(req, res) {
+  console.log(req.params.articleId);
+  if (!validator.isMongoId(req.params.articleId)) {
+    res.status(500).send('Invalid articleId');
   } else {
-    Article.findById(req.params.storyID, function(err, article) {
+    Article.findById(req.params.articleId, function(err, article) {
       if (err) res.status(500).json(err);
+      // TODO make this accept the saved status from req.body
       article.set({ saved: !article.saved });
       article.save(function(err, updatedarticle) {
         if (err) res.status(500).json(err);
@@ -92,7 +92,7 @@ router.get('/scrape(/:pageNumber(d+))?', function(req, res) {
     });
 }); // end GET /scrape route
 
-router.post('/article/:articleId', function(req, res) {
+router.post('/notes', function(req, res) {
   let newNote = { ...req.body };
   console.log(newNote);
 
@@ -101,7 +101,7 @@ router.post('/article/:articleId', function(req, res) {
       console.log('mNote:');
 
       console.log(JSON.stringify(mNote, '', 2));
-      return Article.findOneAndUpdate({ _id: req.params.articleId }, { $push: { notes: mNote._id } }, { new: true });
+      return Article.findOneAndUpdate({ _id: req.body.articleId }, { $push: { notes: mNote._id } }, { new: true });
     })
     .then(function(dbArticle) {
       console.log(JSON.stringify(dbArticle, '', 2));
@@ -109,17 +109,19 @@ router.post('/article/:articleId', function(req, res) {
     });
 }); // end POST new note route
 
-router.post('/deletenote', function(req, res) {
-  // TODO: pull from Article.notes
+router.delete('/notes/:noteId', function(req, res) {
+  // TODO: pull from Article.notes?
 
-  Note.deleteOne({ _id: req.body.noteId }).then(function(result) {
+  Note.deleteOne({ _id: req.params.noteId }).then(function(result) {
     res.json(result);
   });
 });
 
+// TODO make it conditionally populate notes in saved view? and error handling
 router.route('/articles').get(function(req, res) {
   Article.find()
     .sort('-publishDate')
+    .populate('notes')
     .exec(function(err, articles) {
       res.json(articles);
     });
