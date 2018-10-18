@@ -65,6 +65,7 @@ class ArticleView extends Component {
             this.props.article.notes.length > 0 && (
               <CardText>
                 <CommentList notes={this.props.article.notes} />
+                {/* add temporary view of new notes here? */}
               </CardText>
             )}
           {this.props.saved && (

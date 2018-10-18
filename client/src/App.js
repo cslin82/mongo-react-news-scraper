@@ -72,9 +72,7 @@ class App extends Component {
                   <hr />
                   <p className="d-block bg-secondary mb-3 p-1 text-light text-center rounded">All caught up!</p>
                   <p className="d-block mb-3 text-center">
-                    <i className="fab fa-github" />
-                    <a href="https://github.com/cslin82/mongo-react-news-scraper">@cslin82/mongo-react-news-scraper</a>
-                    on GitHub
+                    <i className="fab fa-github" /> <a href="https://github.com/cslin82/mongo-react-news-scraper">@cslin82/mongo-react-news-scraper</a> on GitHub
                   </p>
                 </div>
               </div>
