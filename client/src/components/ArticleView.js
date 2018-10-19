@@ -11,7 +11,7 @@ import {
   CardTitle,
   CardSubtitle,
   CardFooter,
-  Badge,
+  Button,
   Form,
   FormGroup,
   Input,
@@ -36,8 +36,8 @@ class ArticleView extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     if (this.state.noteText) {
-      API.echo({
-        // API.postNote({
+      // API.echo({
+      API.postNote({
         noteText: this.state.noteText,
         articleId: this.props.article._id
       })
@@ -48,6 +48,20 @@ class ArticleView extends Component {
     }
   };
 
+  handleSave = (id, event) => {
+    event.preventDefault();
+    console.log('handleSave clicked', id);
+    
+    API.toggleStory(id);
+  };
+
+  handleDelete = (id, event) => {
+    event.preventDefault();
+    console.log('handleDelete clicked', id);
+    
+    API.deleteNote(id);
+  };
+
   render() {
     return (
       <Card className="mb-3">
@@ -55,7 +69,15 @@ class ArticleView extends Component {
           <CardTitle>
             <a href={this.props.article.url}>{this.props.article.title}</a>
             <span className="float-right">
-              {this.props.article.saved ? <Badge color="danger">Unsave</Badge> : <Badge color="primary">Save</Badge>}
+              {this.props.article.saved ? (
+                <Button color="danger" size="sm" value={this.props.article._id} onClick={event => this.handleSave(this.props.article._id, event)}>
+                  Unsave
+                </Button>
+              ) : (
+                <Button color="primary" size="sm" value={this.props.article._id} onClick={event => this.handleSave(this.props.article._id, event)}>
+                  Save
+                </Button>
+              )}
             </span>
           </CardTitle>
 
@@ -64,7 +86,7 @@ class ArticleView extends Component {
           {this.props.article.saved &&
             this.props.article.notes.length > 0 && (
               <CardText>
-                <CommentList notes={this.props.article.notes} />
+                <CommentList notes={this.props.article.notes} handleDelete={this.handleDelete}/>
                 {/* add temporary view of new notes here? */}
               </CardText>
             )}

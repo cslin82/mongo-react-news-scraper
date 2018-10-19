@@ -7,14 +7,14 @@ export default {
   scrape: function() {
     return axios.get('/api/scrape');
   },
-  postNote: function(articleID) {
-    return axios.post('/api/notes/' + articleID);
+  postNote: function(noteData) {
+    return axios.post('/api/notes', noteData);
   },
-  toggleStory: function(articleID) {
-    return axios.get('/api/toggleStory/' + articleID);
+  toggleStory: function(articleId) {
+    return axios.put('/api/articles/' + articleId);
   },
-  deleteNote: function(noteID) {
-    return axios.delete('/api/notes/' + noteID);
+  deleteNote: function(noteId) {
+    return axios.delete('/api/notes/' + noteId);
   },
   echo: function(whateverdata) {
     console.log(whateverdata);
