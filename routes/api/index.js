@@ -11,22 +11,35 @@ const Note = require('../../models/noteModel');
 
 const scrapeURL = 'https://blog.mozilla.org/';
 
-router.put('/articles/:articleId', function(req, res) {
-  console.log(req.params.articleId);
-  if (!validator.isMongoId(req.params.articleId)) {
-    res.status(500).send('Invalid articleId');
-  } else {
-    Article.findById(req.params.articleId, function(err, article) {
-      if (err) res.status(500).json(err);
-      // TODO make this accept the saved status from req.body
-      article.set({ saved: !article.saved });
-      article.save(function(err, updatedarticle) {
+router
+  .route('/articles/:articleId')
+  .put(function(req, res) {
+    if (!validator.isMongoId(req.params.articleId)) {
+      res.status(500).send('Invalid articleId');
+    } else {
+      Article.findById(req.params.articleId, function(err, article) {
         if (err) res.status(500).json(err);
-        res.json(updatedarticle);
+        // TODO make this accept the saved status from req.body
+        article.set({ saved: !article.saved });
+        article.save(function(err, updatedarticle) {
+          if (err) res.status(500).json(err);
+          res.json(updatedarticle);
+        });
       });
-    });
-  }
-}); // end GET
+    }
+  })
+  .get(function(req, res) {
+    if (!validator.isMongoId(req.params.articleId)) {
+      res.status(500).send('Invalid articleId');
+    } else {
+      Article.findById(req.params.articleId)
+        .populate('notes')
+        .exec(function(err, article) {
+          if (err) res.status(500).json(err);
+          else res.json(article);
+        });
+    }
+  }); // end GET
 
 // TODO expect a number
 router.get('/scrape(/:pageNumber(d+))?', function(req, res) {
@@ -87,8 +100,8 @@ router.get('/scrape(/:pageNumber(d+))?', function(req, res) {
       res.json(newArticles);
       // TODO: figure out what to actually send back on scrape
     })
-    .catch(function(error) {
-      res.status(500).json(error);
+    .catch(function(err) {
+      res.status(500).json(err);
     });
 }); // end GET /scrape route
 
@@ -96,6 +109,7 @@ router.post('/notes', function(req, res) {
   let newNote = { ...req.body };
   console.log(newNote);
 
+  // TODO verify that req.body.articleId is valid mongoid and that it refers to a real note
   Note.create(newNote)
     .then(function(mNote) {
       console.log('mNote:');
@@ -106,6 +120,9 @@ router.post('/notes', function(req, res) {
     .then(function(dbArticle) {
       console.log(JSON.stringify(dbArticle, '', 2));
       res.json(dbArticle);
+    })
+    .catch(function(err) {
+      res.status(500).json(err);
     });
 }); // end POST new note route
 
