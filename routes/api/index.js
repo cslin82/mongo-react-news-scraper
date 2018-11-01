@@ -115,7 +115,11 @@ router.post('/notes', function(req, res) {
       console.log('mNote:');
 
       console.log(JSON.stringify(mNote, '', 2));
-      return Article.findOneAndUpdate({ _id: req.body.articleId }, { $push: { notes: mNote._id } }, { new: true });
+      return Article.findOneAndUpdate(
+        { _id: req.body.articleId },
+        { $push: { notes: mNote._id } },
+        { new: true }
+      ).populate('notes');
     })
     .then(function(dbArticle) {
       console.log(JSON.stringify(dbArticle, '', 2));
