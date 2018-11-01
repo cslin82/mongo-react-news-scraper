@@ -13,7 +13,7 @@ const Home = props => {
   return (
     <div>
       {articlesDisp.map(i => (
-        <ArticleView key={i._id} article={i} saved={saved} />
+        <ArticleView key={i._id} article={i} saved={saved} updateArticle={props.updateArticle} />
       ))}
     </div>
   );

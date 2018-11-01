@@ -30,6 +30,13 @@ class App extends Component {
     });
   };
 
+  updateArticle = (articleId, articleData) => {
+    let i = this.state.articles.findIndex(article => article._id === articleId);
+    this.setState(prevState => {
+      return prevState.articles.splice(i, 1, articleData);
+    });
+  };
+
   render() {
     return (
       <div>
@@ -60,9 +67,21 @@ class App extends Component {
                 </Button>
               </Jumbotron>
               <Switch>
-                <Route exact path="/saved" render={props => <Home {...props} articles={this.state.articles} saved />} />
+                <Route
+                  exact
+                  path="/saved"
+                  render={props => (
+                    <Home {...props} articles={this.state.articles} saved updateArticle={this.updateArticle} />
+                  )}
+                />
                 <Route exact path="/help" component={Help} />
-                <Route exact path="/" render={props => <Home {...props} articles={this.state.articles} />} />
+                <Route
+                  exact
+                  path="/"
+                  render={props => (
+                    <Home {...props} articles={this.state.articles} updateArticle={this.updateArticle} />
+                  )}
+                />
               </Switch>
             </div>
 
@@ -72,7 +91,9 @@ class App extends Component {
                   <hr />
                   <p className="d-block bg-secondary mb-3 p-1 text-light text-center rounded">All caught up!</p>
                   <p className="d-block mb-3 text-center">
-                    <i className="fab fa-github" /> <a href="https://github.com/cslin82/mongo-react-news-scraper">@cslin82/mongo-react-news-scraper</a> on GitHub
+                    <i className="fab fa-github" />{' '}
+                    <a href="https://github.com/cslin82/mongo-react-news-scraper">@cslin82/mongo-react-news-scraper</a>{' '}
+                    on GitHub
                   </p>
                 </div>
               </div>

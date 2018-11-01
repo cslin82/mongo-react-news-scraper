@@ -42,6 +42,7 @@ class ArticleView extends Component {
         articleId: this.props.article._id
       })
         .then(res => {
+          this.props.updateArticle(this.props.article._id, res.data);
           console.log(res.data);
         })
         .catch(err => console.log(err));
@@ -51,14 +52,16 @@ class ArticleView extends Component {
   handleSave = (id, event) => {
     event.preventDefault();
     console.log('handleSave clicked', id);
-    
-    API.toggleStory(id);
+
+    API.toggleStory(id).then(res => {
+      this.props.updateArticle(id, res.data);
+    });
   };
 
   handleDelete = (id, event) => {
     event.preventDefault();
     console.log('handleDelete clicked', id);
-    
+
     API.deleteNote(id);
   };
 
@@ -70,11 +73,21 @@ class ArticleView extends Component {
             <a href={this.props.article.url}>{this.props.article.title}</a>
             <span className="float-right">
               {this.props.article.saved ? (
-                <Button color="danger" size="sm" value={this.props.article._id} onClick={event => this.handleSave(this.props.article._id, event)}>
+                <Button
+                  color="danger"
+                  size="sm"
+                  value={this.props.article._id}
+                  onClick={event => this.handleSave(this.props.article._id, event)}
+                >
                   Unsave
                 </Button>
               ) : (
-                <Button color="primary" size="sm" value={this.props.article._id} onClick={event => this.handleSave(this.props.article._id, event)}>
+                <Button
+                  color="primary"
+                  size="sm"
+                  value={this.props.article._id}
+                  onClick={event => this.handleSave(this.props.article._id, event)}
+                >
                   Save
                 </Button>
               )}
@@ -86,7 +99,7 @@ class ArticleView extends Component {
           {this.props.article.saved &&
             this.props.article.notes.length > 0 && (
               <CardText>
-                <CommentList notes={this.props.article.notes} handleDelete={this.handleDelete}/>
+                <CommentList notes={this.props.article.notes} handleDelete={this.handleDelete} />
                 {/* add temporary view of new notes here? */}
               </CardText>
             )}
