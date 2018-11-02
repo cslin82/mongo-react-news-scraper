@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-import CommentList from './CommentList';
 
 import API from '../Utils/API';
 
@@ -15,7 +14,9 @@ import {
   Form,
   FormGroup,
   Input,
-  Label
+  Label,
+  ListGroup,
+  ListGroupItem
 } from 'reactstrap';
 
 class ArticleView extends Component {
@@ -58,11 +59,11 @@ class ArticleView extends Component {
     });
   };
 
-  handleDelete = (id, event) => {
+  handleDelete = (noteId, articleId, event) => {
     event.preventDefault();
-    console.log('handleDelete clicked', id);
-// this is calling with id of the note, need to figure out way to call getOnePost with the article ID
-    API.deleteNote(id).then(() => API.getOnePost(id).then(res => this.props.updateArticle(id, res.data)));
+    console.log('handleDelete clicked', noteId);
+    // this is calling with id of the note, need to figure out way to call getOnePost with the article ID
+    API.deleteNote(noteId).then(() => API.getOnePost(articleId).then(res => this.props.updateArticle(articleId, res.data)));
   };
 
   render() {
@@ -99,7 +100,22 @@ class ArticleView extends Component {
           {this.props.article.saved &&
             this.props.article.notes.length > 0 && (
               <CardText tag="div">
-                <CommentList notes={this.props.article.notes} handleDelete={this.handleDelete} />
+                <ListGroup>
+                  {this.props.article.notes.map(note => (
+                    <ListGroupItem key>
+                      <Button
+                        color="danger"
+                        className="mr-2"
+                        size="sm"
+                        onClick={event => this.handleDelete(note._id, this.props.article._id, event)}
+                      >
+                        Delete Note
+                      </Button>
+                      {note.noteText}
+                    </ListGroupItem>
+                  ))}
+                </ListGroup>
+
                 {/* add temporary view of new notes here? */}
               </CardText>
             )}
