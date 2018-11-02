@@ -61,8 +61,8 @@ class ArticleView extends Component {
   handleDelete = (id, event) => {
     event.preventDefault();
     console.log('handleDelete clicked', id);
-
-    API.deleteNote(id);
+// this is calling with id of the note, need to figure out way to call getOnePost with the article ID
+    API.deleteNote(id).then(() => API.getOnePost(id).then(res => this.props.updateArticle(id, res.data)));
   };
 
   render() {
@@ -98,7 +98,7 @@ class ArticleView extends Component {
           <CardText>{this.props.article.summary}</CardText>
           {this.props.article.saved &&
             this.props.article.notes.length > 0 && (
-              <CardText>
+              <CardText tag="div">
                 <CommentList notes={this.props.article.notes} handleDelete={this.handleDelete} />
                 {/* add temporary view of new notes here? */}
               </CardText>

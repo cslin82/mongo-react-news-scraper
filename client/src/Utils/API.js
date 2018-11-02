@@ -4,6 +4,9 @@ export default {
   getPosts: function() {
     return axios.get('/api/articles');
   },
+  getOnePost: function(id) {
+    return axios.get('/api/articles/' + id);
+  },
   scrape: function() {
     return axios.get('/api/scrape');
   },
