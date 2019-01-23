@@ -32,9 +32,9 @@
     "body-parser": "^1.18.3",
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.4",
-    "moment": "^2.23.0",
-    "mongoose": "^5.4.3",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.6",
     "morgan": "^1.9.1",
-    "validator": "^10.10.0"
+    "validator": "^10.11.0"
   }
 }
