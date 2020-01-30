@@ -20,8 +20,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^4.1.1",
-    "nodemon": "^1.19.1"
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
   },
   "bugs": {
     "url": "https://github.com/cslin82/mongo-react-news-scraper/issues"
