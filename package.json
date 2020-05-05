@@ -11,7 +11,9 @@
     "client": "cd client && npm run start",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "repository": {
     "type": "git",
@@ -21,7 +23,7 @@
   "license": "ISC",
   "devDependencies": {
     "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2"
+    "nodemon": "^2.0.3"
   },
   "bugs": {
     "url": "https://github.com/cslin82/mongo-react-news-scraper/issues"
@@ -35,6 +37,8 @@
     "moment": "^2.24.0",
     "mongoose": "^5.9.7",
     "morgan": "^1.10.0",
-    "validator": "^12.2.0"
-  }
+    "validator": "^12.2.0",
+    "snyk": "^1.317.0"
+  },
+  "snyk": true
 }
