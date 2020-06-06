@@ -20,8 +20,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2"
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
   },
   "bugs": {
     "url": "https://github.com/cslin82/mongo-react-news-scraper/issues"
@@ -32,8 +32,8 @@
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "express": "^4.17.1",
-    "moment": "^2.24.0",
-    "mongoose": "^5.9.7",
+    "moment": "^2.26.0",
+    "mongoose": "^5.9.18",
     "morgan": "^1.10.0",
     "validator": "^12.2.0"
   }
